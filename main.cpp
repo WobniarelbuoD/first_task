@@ -40,6 +40,7 @@ int main() {
         cout << "2. Buy currency\n";
         cout << "3. Sell currency\n";
         cout << "4. Exit\n";
+        cout << "Choice: ";
         choice = getNumber();
         mainMenu(choice);
         if (choice == 4) {
@@ -61,6 +62,7 @@ void mainMenu(int choice) {
         }
 
         case 2: {
+            buyCurrency();
             break;
         }
 
@@ -69,11 +71,11 @@ void mainMenu(int choice) {
         }
 
         case 4: {
-            break;
+            return;
         }
 
         default:
-            cout << "Invalid option.\n";
+            cout << "\nInvalid option.\n";
 
     }
 
@@ -87,6 +89,7 @@ int currencyOptions() {
         cout << "1. GBP\n";
         cout << "2. USD\n";
         cout << "3. INR\n";
+        cout << "Choice: ";
         choice = getNumber();
 
         if (choice < 1 || choice > 3) {
@@ -121,7 +124,26 @@ void compareCurrency() {
 }
 
 void buyCurrency() {
+    int choice = currencyOptions();
+    double amount;
 
+    cout << "\nWrite the amount of EUR: ";
+    amount = getPositiveDouble();
+
+    switch (choice) {
+        case 1: {
+            cout << "\n" << amount << " EUR = " << amount * GBP_BUY << " GBP\n";
+            break;
+        }
+        case 2: {
+            cout << "\n" << amount <<" EUR = " << amount * USD_BUY << " USD\n";
+            break;
+        }
+        case 3: {
+            cout << "\n" << amount <<" EUR = " << amount * INR_BUY << " INR\n";
+            break;
+        }
+    }
 }
 
 void sellCurrency() {
@@ -132,7 +154,7 @@ int getNumber() {
     int number;
 
     while (!(cin >> number)) {
-        cout << "Please enter a number: ";
+        cout << "\nPlease enter a number: ";
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
@@ -144,7 +166,7 @@ double getPositiveDouble() {
     double number;
 
     while (!(cin >> number) || number < 0) {
-        cout << "Please enter a positive number: ";
+        cout << "\nPlease enter a positive number: ";
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
