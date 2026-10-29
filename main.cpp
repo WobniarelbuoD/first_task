@@ -67,6 +67,7 @@ void mainMenu(int choice) {
         }
 
         case 3: {
+            sellCurrency();
             break;
         }
 
@@ -127,7 +128,7 @@ void buyCurrency() {
     int choice = currencyOptions();
     double amount;
 
-    cout << "\nWrite the amount of EUR: ";
+    cout << "\nWrite the amount: ";
     amount = getPositiveDouble();
 
     switch (choice) {
@@ -147,7 +148,26 @@ void buyCurrency() {
 }
 
 void sellCurrency() {
+    int choice = currencyOptions();
+    double amount;
 
+    cout << "\nWrite the amount: ";
+    amount = getPositiveDouble();
+
+    switch (choice) {
+        case 1: {
+            cout << "\n" << amount << " GBP = " << amount / GBP_SELL << " EUR\n";
+            break;
+        }
+        case 2: {
+            cout << "\n" << amount << " USD = " << amount / USD_SELL << " EUR\n";
+            break;
+        }
+        case 3: {
+            cout << "\n" << amount << " INR = " << amount / INR_SELL << " EUR\n";
+            break;
+        }
+    }
 }
 
 int getNumber() {
